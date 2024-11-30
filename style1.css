@@ -121,53 +121,210 @@ button:hover {
 }
 
 /* produit */
-/* .produit{
+.Produit {
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    flex-wrap: wrap;
-    margin-right: 15%;
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: nowrap; /* Keep all products on the same line */
+    overflow-x: auto; /* Allow horizontal scrolling if the screen is too narrow */
 }
+
+/* Style for each product block */
 .produit1, .produit2, .produit3 {
-    margin-top: 2%;
-    width: 30%;
-    box-sizing: border-box;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 30%; /* Ensure three products in a row */
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    flex-shrink: 0; /* Prevent the items from shrinking */
 }
 
-.produit1 {
-    margin-top: 1%;
-    margin-left: 0%;
-    width: 20%;
-    height: auto;
+/* Hover effect to scale product box */
+.produit1:hover, .produit2:hover, .produit3:hover {
+    transform: translateY(-10px);
 }
 
-.produit2 {
-    margin-top: -39.3%;
-    margin-left: 33%;
-    width: 20%;
+/* Styling for product images */
+.images img {
+    width: 50%;
     height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
 }
-.produit3{
-    margin-top: -37.5%;
-    margin-left: 66%;
-    width: 20%;
-    height: auto;
+
+/* Styling for product info section */
+.infosProduit h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
 }
-.produit{
-    width: 20%;
+
+.infosProduit p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 8px;
 }
-.images {
-    width: 90%;
-    height: auto;
+
+.infosProduit p strong {
+    color: #000;
 }
-.images img{
-    width: 100%;
-    height: auto;
-    border-radius: 10%;
-}
+
+/* Styling for button */
 .buttonn {
-    width: 70%;
-} */
+    margin-top: 10px;
+}
+
+.buttonn button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: rgba(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Button hover effect */
+.buttonn button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Panier */
+/* Panier Modal */
+.cart-modal {
+    display: none; /* Modal caché par défaut */
+    position: fixed;
+    z-index: 1; /* Pour qu'il apparaisse au-dessus des autres éléments */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8); /* Fond semi-transparent sombre */
+    border-radius: 10px;
+}
+
+/* Contenu du Modal */
+.cart-modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 800px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Bouton de fermeture */
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+/* Titre du Panier */
+.cart-modal-content h2 {
+    font-size: 2rem;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Tableau du Panier */
+#cartTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#cartTable th, #cartTable td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    color: #555;
+}
+
+/* En-têtes du tableau */
+#cartTable th {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-weight: bold;
+}
+
+/* Cellules du tableau */
+#cartTable td {
+    background-color: #f9f9f9;
+}
+
+/* Style de survol des lignes */
+#cartTable tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Mise en forme du bouton de finalisation */
+#cartModal button {
+    background-color: rgba(128, 128, 128, 0.8);
+    color: white;
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    margin-top: 30px;
+    transition: background-color 0.3s ease;
+}
+
+/* Effet de survol sur le bouton de finalisation */
+#cartModal button:hover {
+    background-color: rgba(128, 128, 128, 1);
+}
+
+/* Style des lignes de tableau pour l'affichage du produit */
+#cartTable td:last-child {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Ajout de l'espace entre le tableau et le bouton de finalisation */
+#cartModal button {
+    margin-top: 20px;
+}
+
+/* Responsive : Adaptation pour les petits écrans */
+@media (max-width: 768px) {
+    .cart-modal-content {
+        width: 90%;
+        padding: 15px;
+    }
+
+    #cartTable th, #cartTable td {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    #cartModal button {
+        font-size: 16px;
+        padding: 10px;
+    }
+}
 
 /* Footer */
 footer {
